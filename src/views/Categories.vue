@@ -1,7 +1,7 @@
 <template>
   <div class="categories">
     <h1>Categories</h1>
-    <div v-for="item in categories" :key="item.id">
+    <div v-for="item in getCategories" :key="item.id">
       <img  :src="item.icons.url" 
             :style="{ 'height' : item.icons.height , 
                       'width' : item.icons.width}">
@@ -10,7 +10,6 @@
   </div>
 </template>
 
-//TODO: 1. encapsular la respuesta en una funcion
 //TODO: 2. poner esa funcion en un service de categories (data mockeada)
 //TODO: 3. definir un modolo para el objeto categoria
 //TODO: 4. conectar el servicio con una api mockeada
@@ -18,9 +17,9 @@
 <script>
 export default {
   name: 'categories',
-  data () {
-    return {
-        categories: [
+  computed: {
+    getCategories: function() {
+      return [
                 {
                     "href":"https://api.spotify.com/v1/browse/categories/toplists",
                     "icons":
