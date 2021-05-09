@@ -1,11 +1,24 @@
 <template>
   <div class="categories">
     <h1>Categories</h1>
-    <div v-for="item in categories" :key="item.id">
-      <img  :src="item.icons.url" 
-            :style=getImgStyle(item.icons)>
-      <h2>{{ item.name }}</h2>
-    </div>
+    <section v-if="errors.length > 0">
+      <div v-for="error in errors" :key="error.id" >
+        <p>{{error}}</p>
+      </div>
+    </section>
+    <section v-else class="card-group">
+      <div v-for="item in categories" :key="item.id">
+        <div class="card">
+          <img class="card-img-top" 
+                :src="item.icons[0].url" 
+                :style=getImgStyle(item.icons[0])>
+          <div class="card-body">
+            <h5 class="card-title">{{ item.name }}</h5>
+          </div>
+        </div>
+      </div>
+      <!--TODO: add paginator-->
+    </section>
   </div>
 </template>
 
@@ -16,13 +29,19 @@ export default {
   name: 'categories',
   data() {
     return {
-      categories: []
+      categories: [],
+      errors: []
     }
   },
   created() {
-    this.categories = CategoryService.getCategories();
+    this.getCategories();
   },
   methods: {
+    getCategories() {
+        CategoryService.getCategories()
+        .then(response => this.categories = response.data.categories.items)
+        .catch(error => this.errors.push(error.message));
+    },
     getImgStyle: function(icons) {
       //TODO: add validations
       return {
