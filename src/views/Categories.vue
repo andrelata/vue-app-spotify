@@ -1,24 +1,22 @@
 <template>
   <div class="categories">
     <h1>Categories</h1>
-    <section v-if="errors.length > 0">
+    <section v-if="errors.length">
       <div v-for="error in errors" :key="error.id" >
         <p>{{error}}</p>
       </div>
     </section>
-    <section v-else class="card-group">
+    <b-card-group>
       <div v-for="item in categories" :key="item.id">
-        <div class="card">
-          <img class="card-img-top" 
-                :src="item.icons[0].url" 
-                :style=getImgStyle(item.icons[0])>
-          <div class="card-body">
+        <b-card :img-src="item.icons[0].url" 
+                :img-style="getImgStyle(item.icons[0])" img-top>
+          <b-card-text>
             <h5 class="card-title">{{ item.name }}</h5>
-          </div>
-        </div>
+          </b-card-text>
+        </b-card>
       </div>
       <!--TODO: add paginator-->
-    </section>
+    </b-card-group>
   </div>
 </template>
 
