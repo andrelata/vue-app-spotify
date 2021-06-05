@@ -1,11 +1,6 @@
 <template>
   <div class="categories">
     <h1>Categories</h1>
-    <section v-if="errors.length">
-      <div v-for="error in errors" :key="error.id" >
-        <p>{{error}}</p>
-      </div>
-    </section>
     <b-card-group>
       <div v-for="item in categories" :key="item.id">
         <b-card :img-src="item.icons[0].url" 
@@ -27,8 +22,7 @@ export default {
   name: 'categories',
   data() {
     return {
-      categories: [],
-      errors: []
+      categories: []
     }
   },
   created() {
@@ -37,8 +31,7 @@ export default {
   methods: {
     getCategories() {
         CategoryService.getCategories()
-        .then(response => this.categories = response.data.categories.items)
-        .catch(error => this.errors.push(error.message));
+        .then(response => this.categories = response.data.categories.items);
     },
     getImgStyle: function(icons) {
       //TODO: add validations
