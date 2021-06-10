@@ -1,9 +1,11 @@
 import axios from "axios";
 import vm from '@/main.js';
 
+const httpClient = axios.create({ baseURL: process.env.VUE_APP_API_URL_BASE })
+
 export default {
     get(url) {
-        return axios.get(process.env.VUE_APP_API_URL_BASE + url);
+        return httpClient.get(url);
     }
 
 }

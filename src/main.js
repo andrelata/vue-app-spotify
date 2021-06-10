@@ -5,7 +5,7 @@ import router from '@/router'
 
 Vue.config.productionTip = false
 
-var vm = new Vue({
+const vm = new Vue({
   router,
   render: h => h(App)
 });
