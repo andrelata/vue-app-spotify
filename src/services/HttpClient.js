@@ -10,7 +10,7 @@ export default {
 
 }
 
-axios.interceptors.request.use(
+httpClient.interceptors.request.use(
   (config) => {
     if (process.env.VUE_APP_ACCESS_TOKEN) {
       config.headers['Authorization'] = `Bearer ${ process.env.VUE_APP_ACCESS_TOKEN }`;
@@ -23,7 +23,7 @@ axios.interceptors.request.use(
 );
 
 
-axios.interceptors.response.use(
+httpClient.interceptors.response.use(
     (response) => {
         //TODO add time of request
         vm.$bvToast.toast(`Api Call ${response.config.url}`, {
