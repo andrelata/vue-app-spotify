@@ -3,7 +3,7 @@ import HttpClient from "./HttpClient";
 
 export default {
      getCategories() {
-        return HttpClient.get('categories');
+        return HttpClient.get('browse/categories');
     }
 }
 /*

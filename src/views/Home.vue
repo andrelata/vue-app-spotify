@@ -1,7 +1,36 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <h4>{{msg}}</h4>
+    <div>
+    <b-carousel
+      id="carousel-1"
+      v-model="slide"
+      :interval="4000"
+      controls
+      indicators
+      background="#ababab"
+      img-width="1024"
+      img-height="200"
+      style="text-shadow: 1px 1px 2px #333;"
+      @sliding-start="onSlideStart"
+      @sliding-end="onSlideEnd"
+    >
+      <!-- Slides with custom text -->
+      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=52">
+        <h1>Hello world!</h1>
+      </b-carousel-slide>
+
+      <!-- Slides with custom text -->
+      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
+        <h1>Hello world!</h1>
+      </b-carousel-slide>
+
+      <!-- Slides with custom text -->
+      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58">
+        <h1>Hello world!</h1>
+      </b-carousel-slide>
+
+    </b-carousel>
+    </div>
   </div>
 </template>
 
